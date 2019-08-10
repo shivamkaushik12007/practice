@@ -6,6 +6,9 @@ void swapAdjecentItteration(struct node **h){
 	s->next=temp->next;
 	temp->next=s;
 	*h=temp;
+	if(s->next==NULL||s->next->next==NULL){
+		return;
+	}
 	struct node* prev=s;
 	struct node* curr=s->next;
 	struct node* next1=curr->next;
