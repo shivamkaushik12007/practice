@@ -16,7 +16,7 @@ struct node* swapAdjecentRecursion(struct node *h){
 	if(first->next==NULL){
 		return first;
 	}
-	second->next=second->next!=NULL?(second->next):NULL;
+	second->next=second->next!=NULL?swapAdjecentRecursion(second->next):NULL;
 	first->next=second->next;
 	second->next=first;
 	return second;
