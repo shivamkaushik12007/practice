@@ -18,8 +18,8 @@ listnode* reverseBetween(listnode* A, int B, int C) {
         i++;
     }
     prev=curr1->next;
-    int d;
-    while(curr!=NULL&&d<(C-B)+1){
+    int d=0;
+    while(curr!=NULL&&d!=(C-B)+1){
         next1=curr->next;
         curr->next=prev;
         prev=curr;
