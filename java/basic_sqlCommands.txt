@@ -1,0 +1,161 @@
+8~ create table cse("Srno."number(2),"Emp_id"varchar(5),"Facname"char(8));
+INSERT INTO cse ("Srno.","Emp_id","Facname") 
+ VALUES(01,'E1121','MERANAME');
+select * from cse
+
+
+~ select * from cse
+where "Emp_id"='E1121';
+
+
+~ select distinct * from kaushik;
+
+
+~  select * from kaushik
+order by "Name";
+
+~delete from kaushik where "Name"='panchva';
+
+
+~alter table kaushik
+add Email varchar(25);
+
+
+~update kaushik set Email='chau.gmail.com' where "Name"='chauta';
+
+~alter table kaushik
+drop column Email;
+
+~truncate table kaushik;
+
+~create table hello("Emp_id" varchar(20),"Name" char(50),Primary key("Emp_id","Name"));
+create table hellow("Emp_id" varchar(20) primary key,"Name" char(50));
+
+~create table world("Emp_id" varchar(20), "Name" char(50), Foreign key("Emp_id") References hellow("Emp_id"));
+
+~desc kaushik;
+
+~create table sbc("emp" varchar2(20) not null,"name" char(50));
+insert into sbc("emp","name")values('','abc');
+
+~create table sbc("emp" varchar2(20) unique,"name" char(50));
+
+~drop table bbc;
+create table sbc("emp" varchar2(20) primary key,"name" char(50));
+insert into sbc("emp","name")values('E12345','asdfgh');
+alter table sbc
+add email varchar(20);
+select * from sbc; 
+create table dbc("dept" varchar2(20) primary key,"emp" varchar2(20) references sbc);
+insert into dbc("dept","emp")values('D12345','E12345');
+create table bbc("item" number(4),"iname" char(20),"emppp" varchar2(20),foreign key("emppp") references sbc("emp") on delete set null);
+insert into bbc("item","iname","emppp")values(1235,'namehau','E12345');
+//on delete cascade
+//on delete set null
+create table kuch("emp" varchar(20) primary key,"name" char(50)),
+check(emp like 'E%'),
+check(name=upper(name));
+
+
+
+
+~create table employeeeee("employee_id" int not null,"last_name" char(50) not null, "first_name" char(50) not null, "salary" number(10,2) );
+
+alter table employeeeee
+add constraint ch_employee_id
+check("employee_id" between 1 and 100000);
+
+alter table employeeeee
+add constraint ch_salary
+check("salary">0);
+
+alter table employeeeee
+add constraint ch_salary_
+check("salary">0 and "salary"<100000);
+
+alter table employeeeee
+add constraint ch_lastname
+check("last_name" in('sharma','mahajan','goyal'));
+
+alter table employeeeee
+drop constraint ch_salary;
+
+select * from employeeeee
+
+~create table empl("Emp_Id" varchar2(10) primary key,"Name" char(50),"City" char(50));
+create table dept("Emp_Id" varchar2(10),"Dept_Id" varchar2(10),"Dept" char(50),foreign key("Emp_Id") references empl("Emp_Id") on delete set null); 
+insert into empl("Emp_Id","Name","City") values('E0003','third kumar','ghana');
+insert into dept("Emp_Id","Dept_Id","Dept") values('E0003','D0003','forest');
+select * from empl;
+select * from dept;
+
+
+
+create table tab1("Emp_Id" varchar2(10),"Name" char(50));
+create table tab2("Emp_Id" varchar2(10),"Dept" char(50));
+insert into tab1("Emp_Id","Name") values('E0003','third');
+insert into tab2("Emp_Id","Dept") values('E0002','goofa');
+
+select tab1."Name",tab2."Dept" from tab1 left join tab2 on tab1."Emp_Id"=tab2."Emp_Id";
+
+
+
+
+~create table worker("w_id" varchar2(10) primary key,"first_name" char(30),"last_name" char(30),"salary" number(12),"joining_date" timestamp,"dept" char(30));
+create table bonus("wref_id" varchar2(10),"bonus_date" date,"bonus_amount" number(10),foreign key("wref_id") references worker("w_id"));
+insert into worker("w_id","first_name","last_name","salary","joining_date","dept")
+  values('W0003','alias','kumar',123123,to_date('02/12/2018 21:20:22','dd/mm/yyyy hh24:mi:ss'),'motor');
+insert into bonus("wref_id","bonus_date","bonus_amount")
+  values('W0001','08/12/2012',123321);
+
+select * from worker where "first_name"='alias';
+select * from worker where lower("first_name")='alias';
+select "first_name" from worker;
+select * from bonus;
+select upper("first_name") from worker;
+SELECT SUBSTR("first_name", 1, 3) AS ExtractString
+FROM worker;
+SELECT COUNT (DISTINCT "dept")
+  FROM worker;
+select count("w_id") from worker where "dept"='motor';
+
+
+~create table game("gname" char(20),"fees" number(4),primary key("gname"));
+create table stud("rollno" number(10),"name" char(20),primary key("rollno"));
+create table conc("rollno" number(10) unique,"gname" char(20),"grade" varchar2(3),Foreign key("rollno") References stud("rollno"),Foreign key("gname") References game("gname"));
+insert into game("gname","fees") values('hockey',200);
+insert into stud("rollno","name") values(5,'parul');
+insert into conc("rollno","gname","grade") values(5,'hockey','A+');
+select * from game;
+select * from stud;
+select * from conc;
+create table conc01("rollno" number(10) ,"gname" char(20),"grade" varchar2(3),Foreign key("rollno") References stud("rollno"),Foreign key("gname") References game("gname"),primary key("rollno","gname"));
+insert into conc01("rollno","gname","grade") values(1,'cricket','A');
+
+
+
+~create view abc as select 
+ DEPARTMENT_ID,
+ DEPARTMENT_NAME,
+ MANAGER_ID,
+ LOCATION_ID
+ from DEPARTMENTS where DEPARTMENT_ID>50;
+select * from abc;
+
+create or replace view ab as select 
+ DEPARTMENT_ID,
+ DEPARTMENT_NAME,
+ MANAGER_ID,
+ LOCATION_ID
+ from DEPARTMENTS where DEPARTMENT_ID>50;
+select * from ab;
+
+drop view abc;
+
+HOW TO CREATE USER
+create user username identified by password;
+
+grant privileges on object to users;
+revoke privileges on object to users;
+
+
