@@ -25,6 +25,15 @@ void pop(Stack **h){
 	}
 }
 
+char pole(Stack **h){
+	if(*h==NULL)
+		return NULL;
+	
+	Stack* temp=*h;
+	*h=(*h)->next;
+	return temp->data;
+}
+
 char peak(Stack **h){
 	Stack* curr=*h;
 	return curr->data;
