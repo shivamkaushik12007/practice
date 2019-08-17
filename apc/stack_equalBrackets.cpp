@@ -28,7 +28,7 @@ void pop(Stack **h){
 	}
 }
 
-char peak(Stack **h){
+char peek(Stack **h){
 	Stack* curr=*h;
 	return curr->data;
 }
@@ -52,7 +52,7 @@ int main(){
 		if(ch[i]=='('||ch[i]=='{'||ch[i]=='['||ch[i]=='<'){
 			head=push(head,ch[i]);
 		}
-		if((ch[i]==')'&&peak(&head)=='(')||(ch[i]=='}'&&peak(&head)=='{')||(ch[i]==']'&&peak(&head)=='[')){
+		if((ch[i]==')'&&peek(&head)=='(')||(ch[i]=='}'&&peek(&head)=='{')||(ch[i]==']'&&peek(&head)=='[')){
 			pop(&head);
 		}
 	}
