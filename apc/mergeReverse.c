@@ -17,12 +17,21 @@ void push(struct node **h,int val){
     n->next=*h;
     *h=n;    
 }
-void swap(struct node *a, struct node *b) 
-{ 
-    int temp = a->data; 
-    a->data = b->data; 
-    b->data = temp; 
+
+struct node* reverseRecursion(struct node *curr){
+    struct node* first;
+    struct node* second;
+    first=curr;
+    second=first->next;
+    if(second==NULL){
+        return first;
+    }
+    struct node* h=reverseRecursion(second);
+    first->next=second->next;
+    second->next=first;
+    return h;
 }
+
 int main() {
     int k;
     struct node* l1=NULL;
@@ -38,32 +47,25 @@ int main() {
     struct node* res=NULL;
     struct node* curr1=l1;
     struct node* curr2=l2;
-    while(curr1->next!=NULL){
+    while(curr1!=NULL&&curr2!=NULL){
+        if(curr1->data>curr2->data){
+            push(&res,curr1->data);
+            curr1=curr1->next;
+        }else{
+            push(&res,curr2->data);
+            curr2=curr2->next;
+        }
+    }
+    while(curr1!=NULL){
+        push(&res,curr1->data);
         curr1=curr1->next;
     }
-    curr1->next=curr2;
-    l2=NULL;
-    int swapped;
-    struct node* ptr1;
-    struct node* lptr=NULL;
-    do
-    { 
-        swapped = 0; 
-        ptr1 = l1; 
-  
-        while (ptr1->next != lptr) 
-        { 
-            if (ptr1->data < ptr1->next->data) 
-            {  
-                swap(ptr1, ptr1->next); 
-                swapped = 1; 
-            } 
-            ptr1 = ptr1->next; 
-        } 
-        lptr = ptr1; 
-    } 
-    while (swapped); 
-    struct node* rum=l1;
+    while(curr2!=NULL){
+        push(&res,curr2->data);
+        curr2=curr2->next;
+    }
+    res=reverseRecursion(res);
+    struct node* rum=res;
     while(rum!=NULL){
         printf("%d ",rum->data);
         rum=rum->next;
