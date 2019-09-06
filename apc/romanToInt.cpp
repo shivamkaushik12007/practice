@@ -9,19 +9,19 @@ int main(){
 	}
 	int arr[n];
 	for(i=0;i<n;i++){
-		if(ch[i]=='i'){
+		if(ch[i]=='I'){
 			arr[i]=1;
-		}else if(ch[i]=='v'){
+		}else if(ch[i]=='V'){
 			arr[i]=5;
-		}else if(ch[i]=='x'){
+		}else if(ch[i]=='X'){
 			arr[i]=10;
-		}else if(ch[i]=='l'){
+		}else if(ch[i]=='L'){
 			arr[i]=50;
-		}else if(ch[i]=='c'){
+		}else if(ch[i]=='C'){
 			arr[i]=100;
-		}else if(ch[i]=='d'){
+		}else if(ch[i]=='D'){
 			arr[i]=500;
-		}else if(ch[i]=='m'){
+		}else if(ch[i]=='M'){
 			arr[i]=1000;
 		}
 	}
