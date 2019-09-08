@@ -136,3 +136,76 @@ public class Main{
         return res;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+package encryptdecrypt;
+import java.util.*;
+import java.lang.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner scanner=new Scanner(System.in);
+        String func="enc";
+        String str=ne String("");
+        int k=0;
+        for(int i=0;i<args.length;i++){
+            if(args[i].equals("-mode")&&!args[i+1].equals(-data)&&!args[i+1].equals(-key)){
+                func=args[i+1];
+            }else if(args[i].equals("-data")&&!args[i+1].equals(-key)&&!args[i+1].equals(-mode)){
+                str=args[i+1];
+            }else if(args[i].equals("-key")&&!args[i+1].equals(-data)&&!args[i+1].equals(-mode)){
+                k=Integer.parseInt(args[i+1]);
+            }
+        }
+        if(str.equals("")){
+            str=scanner.nextLine();
+        }
+        if(k==0) {
+            k=scanner.nextInt();
+        }
+        func=func.toLowerCase();
+        if(func.equals("enc")){
+            str=encrypt(str,k);
+        }else if(func.equals("dec")){
+            str=decrypt(str,k);
+        }
+        System.out.println(str);
+    }
+    private static String encrypt(String str,int k){
+        int n=str.length();
+        String res=new String("");
+        for(int i=0;i<n;i++){
+            char ch=str.charAt(i);
+            int asc=(int)ch+k;
+            ch=(char)asc;
+            res+=Character.toString(ch);
+        }
+        return res;
+    }
+    private static String decrypt(String str,int k){
+        int n=str.length();
+        String res=new String("");
+        for(int i=0;i<n;i++){
+            char ch=str.charAt(i);
+            int asc=(int)ch-k;
+            ch=(char)asc;
+            res+=Character.toString(ch);
+        }
+        return res;
+    }
+}
