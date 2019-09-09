@@ -159,3 +159,315 @@ grant privileges on object to users;
 revoke privileges on object to users;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+~create view view1 as select empno,ename from emp;
+select * from view1;
+create or replace view view1 as select empno,ename from emp with read only;
+
+create or replace view view1(id,name) as select empno,ename from emp;
+
+create view view2 as select emp.empno,emp.ename,emp.sal,dept.deptno,dept.dname from emp,dept where dept.deptno=emp.deptno;
+select * from view2;
+create view view2 as select e.empno,e.ename,e.sal,d.deptno,d.dname from emp e,dept d where d.deptno=e.deptno;
+
+
+
+~create view v1 as select empno,ename from emp;
+insert into v1(empno,ename) values(220,'hello');
+update v1 set ename='hululu' where empno=220;
+delete from v1 where empno=220;
+select * from v1;
+
+create sequence sq1 start with 50 increment by 1 maxvalue 60 order;
+select * from user_sequences;
+
+~create sequence sq2 start with 1 increment by -1 minvalue -10 maxvalue 10 order;
+select * from user_sequences;
+
+alter sequence sq2 increment by 1 minvalue -10 maxvalue 20 cache 2 order;
+
+select * from dual;//one row on coloumn
+select sq1.currval from dual;
+select sq1.nextval from dual;
+
+insert into emp(empno,ename,sal) values(sq2.nextval,'werty',1000);
+insert into emp(empno,ename,sal) values(sq2.nextval,'qwerty',1000);
+select * from emp where ename='qwerty';
+
+Q.create a sequence to generate no. from 1 to 9999 in ascending oder with an interval of 2 and the sequence must restart from 1 after reaching 9999;
+ANS> create sequence sq3 start with 1 increment by 2 minvalue 1 maxvalue 9999 cycle order;
+
+~create index index_name on table_name(col_name1,col_name2);
+create index index1 on emp(empno);
+select * from user_indexes;
+create unique index index2 on emp(ename);
+
+/*composite index*/
+create index index3 on emp(empno,sal);
+
+/*bitmap index only for image*/
+create index bitmap on emp(image);
+
+/*create table 
+create index on cluster
+create table
+*/
+
+create cluster cl1(d number(10));
+create index cin1 on cluster cl1;
+create table deptt1(dno number(10),dname varchar2(20)) cluster cl1(dno);
+create table empp1(empno number(20),ename varchar2(20),dno number(10)) cluster cl1(dno);
+insert into deptt1(dno,dname) values(100,'cse');
+insert into deptt1(dno,dname) values(101,'mech');
+insert into empp1(empno,ename,dno) values(001,'first',100);
+insert into empp1(empno,ename,dno) values(002,'second',101);
+select rowid,dno,dname from deptt1;
+select rowid,empno,ename,dno from empp1;
+
+select rowid,dname,deptno from dept;
+select rowid,empno,ename,deptno from emp;
+select * from dept;
+
+~/*PL SQL*/
+Declare
+a number(20);
+b number(20);
+c number(20);
+Begin
+a:=:a;
+b:=:b;
+c:=a+b;
+dbms_output.put_line('sum is '||c);
+end;
+
+/*area of circle*/
+Declare
+a number(20,2);
+c number(20,2);
+Begin
+a:=:a;
+c:=3.14*a*a;
+dbms_output.put_line('area is '||c);
+end;
+
+/*if else*/
+Declare
+a number(10);
+b number(10);
+c number(10);
+Begin
+a:=:a;
+b:=:b;
+c:=:c;
+if(a>b AND a>c)then
+dbms_output.put_line('a is greater');
+elsif(b>a AND b>c)then
+dbms_output.put_line('b is greater');
+else
+dbms_output.put_line('c is greater');
+end if;
+end;
+
+/*case statement*/
+Declare
+a varchar(10):=:a;
+b varchar(10);
+Begin
+b:=
+case
+when a='A' then 'excellent'
+when a='B' then 'very good'
+when a='C' then 'average'
+when a='D' then 'poor'
+else
+'no grade'
+end;
+dbms_output.put_line('grades is ' || b);
+end;
+
+/*iterative control statements*/
+
+/*basic  loop*/
+Declare
+a number(10):=0;
+Begin
+loop
+a:=a+2;
+exit when(a>10);
+end loop;
+dbms_output.put_line(a);
+end;
+
+/*while loop*/
+Declare
+a number(10):=0;
+Begin
+while(a<10)
+loop
+a:=a+2;
+end loop;
+dbms_output.put_line(a);
+end;
+
+/*for loop*/
+Declare
+a number(10):=0;
+Begin
+for counter in 1..5
+loop
+a:=a+2;
+end loop;
+dbms_output.put_line(a);
+end;
+
+/*sequential control statement*/
+/* exit and continue*/
+
+/*goto*/
+create table old_price("pno" varchar2(10),"date" number(10),"old" number(10));
+insert into old_price("pno","date","old")values();
+create table product("pno" varchar2(10),"sprice" number(10));
+insert into product("pno","sprice")values();
+
+Declare
+a number(10);
+Begin
+select sprice into a from product where pno='p1';
+if(a<2000)then
+goto old_price;
+else
+dbms_output.put_line('current price is '||a);
+end if;
+<<old_price>>
+update product set sprice=5000 where pno='p1'
+
+
+/* wite to check whether a number is armstrong or not*/
+/*print fibonacci series*/
+/*multiplication of table of number*/
+/*palindrom*/
+/*to accept the number for user and print it in reverse order*/
+/*take string and revese it(length and substr)*/
+
+~/*exception handling*/
+Declare 
+name emp.ename%type;
+Begin
+select ename into name from emp where deptno=:deptno;
+dbms_output.put_line('ename is '||name);
+Exception
+when zero_divide then
+dbms_output.put_line('ename is zero');
+when too_many_rows then
+dbms_output.put_line('ename is multiple');
+when no_data_found then
+dbms_output.put_line('ename is empty');
+end;
+
+~Declare
+name emp.ename%type;
+eno emp.empno%type;
+Begin
+name:=:name;
+eno:=:eno;
+insert into emp(empno,ename) values(eno,name);
+Exception
+when zero_divide then
+dbms_output.put_line('ename is zero');
+when dup_val_on_index then
+dbms_output.put_line('dupliacte');
+end;
+
+/*user defined Exception*/
+Declare
+excep exception;
+eno emp.empno%type;
+name emp.ename%type;
+Begin
+eno:=:eno;
+name:=:name;
+if eno is NULL then
+raise excep;
+end if;
+insert into emp(empno,ename) values(eno,name);
+dbms_output.put_line('inserted');
+Exception
+when excep then
+dbms_output.put_line('null nahi dalna');
+end;
+
+/*user + predefiend exception*/
+Declare
+excep exception;
+eno emp.empno%type;
+name emp.ename%type;
+name1 emp.ename%type;
+Begin
+eno:=:eno;
+name:=:name;
+if eno is NULL then
+raise excep;
+end if;
+insert into emp(empno,ename) values(eno,name);
+dbms_output.put_line('inserted');
+select ename into name1 from emp where deptno=:deptno;
+Exception
+when excep then
+dbms_output.put_line('null nahi dalna');
+when too_many_rows then
+dbms_output.put_line('ename is multiple');
+when no_data_found then
+dbms_output.put_line('ename is empty');
+end;
+
+/*RERAISING exception*/
+Declare
+sal_too_high exception;
+eror_sal number(10);
+curr_sal number(10):=20000;
+max_sal number(10):=10000;
+Begin
+Begin
+if curr_sal>max_sal then
+raise sal_too_high;
+end if;
+exception
+when sal_too_high then
+dbms_output.put_line('out of range');
+dbms_output.put_line('maxsal');
+raise;
+end;
+exception
+when sal_too_high then
+eror_sal:=curr_sal;
+curr_sal:=max_sal;
+dbms_output.put_line('third');
+end;
+
+~/*pragma exception_init*/
+Declare
+deadlock_detected exception;
+pragma exception_init(deadlock_detected, -60);
+Begin
+NULL;
+raise deadlock_detected;
+Exception
+when deadlock_detected then
+dbms_output.put_line('pragama exception');
+end;
+
+
+
