@@ -87,39 +87,41 @@ typedef struct Linked{
 	struct Linked* next;
 }link;
 
-void pushLinkBeg(link** h,map* val){
-	if((*h)->m->key>val->key){
+void pushLinkBeg(link* h,map* val){
+	link* curr=h;
+	if(curr->m->key>=val->key){
+		return;
+	}else{
 		link* n=(link*)malloc(sizeof(link));
 		n->m=val;
-		n->next=*h;
-		*h=n;		
-	}else{
-		return;
+		n->next=h;
+		h=n;
 	}
 }
 
-void pushLinkEnd(link** h,map* val){
+void pushLinkEnd(link* h,map* val){
+	link* curr=h;
+	while(curr->next!=NULL){
+		if(curr->m->key==val->key){
+			return;
+		}
+		curr=curr->next;
+	}	
 	link* n=(link*)malloc(sizeof(link));
 	n->m=val;
-	n->next=NULL;
-	if(*h==NULL){
-		*h=n;
-	}else{
-		link* curr=*h;
-		while(curr->next!=NULL){
-			if(curr->m->key==val->key){
-				return;
-			}
-			curr=curr->next;
-		}
-		curr->next=n;
-	}
+	n->next=NULL; 
+	curr->next=n;
 }
 
 int main(){
-	tree* root;
-	root=insertTree(root,1);
-	printf("%d",root->data);
+	tree* root=NULL;
+	root=insertTree(root,50);
+	root=insertTree(root,30);
+	root=insertTree(root,20);
+	root=insertTree(root,40);
+	root=insertTree(root,70);
+	root=insertTree(root,60);
+	root=insertTree(root,80);
 	queue* q=(queue*)malloc(sizeof(queue));
 	q->front=NULL;
 	q->rear=NULL;
@@ -129,21 +131,24 @@ int main(){
 		map* k=(map*)malloc(sizeof(map));
 		k->key=q->front->snode->dis;
 		k->value=q->front->snode->node->data;
-		if(q->front->snode->dis<0){
-			pushLinkBeg(&head,k);
-		}else if(q->front->snode->dis>=0){
-			pushLinkEnd(&head,k);
+		printf("%d %d\n",k->value,k->key);
+		if(k->key<=0){
+			pushLinkBeg(head,k);
+		}else if(k->key>0){
+			pushLinkEnd(head,k);
 		}
 		int dist=q->front->snode->dis;
 		if(q->front->snode->node->left!=NULL){
-			dist=dist-1;
-			push(q,q->front->snode->node->left,dist);
-		}else if(q->front->snode->node->right!=NULL){
-			dist=dist+1;
-			push(q,q->front->snode->node->right,dist);
+			int dist1=dist-1;
+			push(q,q->front->snode->node->left,dist1);
 		}
+		if(q->front->snode->node->right!=NULL){
+			int dist1=dist+1;
+			push(q,q->front->snode->node->right,dist1);
+		}
+//		printf("%d %d\n",q->front->snode->node->data,q->front->snode->dis);
 		pop(q);
-	}			
+	}		
 	link* curr=head;
 	while(curr!=NULL){
 		printf("%d ",curr->m->value);
