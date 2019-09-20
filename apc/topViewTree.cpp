@@ -87,20 +87,21 @@ typedef struct Linked{
 	struct Linked* next;
 }link;
 
-void pushLinkBeg(link* h,map* val){
-	link* curr=h;
-	if(curr->m->key>=val->key){
+void pushLinkBeg(link** h,map* val){
+	link* curr=(*h);
+	
+	if(curr!=NULL&&curr->m->key<=val->key){
 		return;
 	}else{
 		link* n=(link*)malloc(sizeof(link));
 		n->m=val;
-		n->next=h;
-		h=n;
+		n->next=(*h);
+		(*h)=n;
 	}
 }
 
-void pushLinkEnd(link* h,map* val){
-	link* curr=h;
+void pushLinkEnd(link** h,map* val){
+	link* curr=(*h);
 	while(curr->next!=NULL){
 		if(curr->m->key==val->key){
 			return;
@@ -119,9 +120,9 @@ int main(){
 	root=insertTree(root,30);
 	root=insertTree(root,20);
 	root=insertTree(root,40);
-	root=insertTree(root,70);
+//	root=insertTree(root,70);
 	root=insertTree(root,60);
-	root=insertTree(root,80);
+//	root=insertTree(root,80);
 	queue* q=(queue*)malloc(sizeof(queue));
 	q->front=NULL;
 	q->rear=NULL;
@@ -131,11 +132,11 @@ int main(){
 		map* k=(map*)malloc(sizeof(map));
 		k->key=q->front->snode->dis;
 		k->value=q->front->snode->node->data;
-		printf("%d %d\n",k->value,k->key);
+//		printf("%d %d\n",k->value,k->key);
 		if(k->key<=0){
-			pushLinkBeg(head,k);
-		}else if(k->key>0){
-			pushLinkEnd(head,k);
+			pushLinkBeg(&head,k);
+		}else{
+			pushLinkEnd(&head,k);
 		}
 		int dist=q->front->snode->dis;
 		if(q->front->snode->node->left!=NULL){
@@ -152,6 +153,7 @@ int main(){
 	link* curr=head;
 	while(curr!=NULL){
 		printf("%d ",curr->m->value);
+		curr=curr->next;
 	}
 	return 0;
 }
