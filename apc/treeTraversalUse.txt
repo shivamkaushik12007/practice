@@ -1,0 +1,7 @@
+INORDER:it is used for the sorting of the tree;
+
+POSTORDER:to tackle the cache problem;
+
+PREORDER: it is used to send the data;
+
+LEVELORDER:for the hieght of tree;
