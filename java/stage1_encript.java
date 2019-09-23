@@ -288,3 +288,102 @@ public class Main{
         return res;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+package encryptdecrypt;
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner scanner=new Scanner(System.in);
+        String func="enc";
+        String str="";
+        String out="";
+        int k=Integer.MIN_VALUE;
+        for(int i=0;i<args.length;i++){
+            if(i<args.length-1&&args[i].equals("-mode")&&!args[i+1].equals("-out")&&!args[i+1].equals("-in")&&!args[i+1].equals("-data")&&!args[i+1].equals("-key")){
+                func=args[i+1];
+            }else if(i<args.length-1&&args[i].equals("-data")&&!args[i+1].equals("-out")&&!args[i+1].equals("-in")&&!args[i+1].equals("-key")&&!args[i+1].equals("-mode")){
+                str=args[i+1];
+            }else if(i<args.length-1&&args[i].equals("-key")&&!args[i+1].equals("-out")&&!args[i+1].equals("-in")&&!args[i+1].equals("-data")&&!args[i+1].equals("-mode")){
+                k=Integer.parseInt(args[i+1]);
+            }else if(i<args.length-1&&args[i].equals("-in")&&!args[i+1].equals("-out")&&!args[i+1].equals("-key")&&!args[i+1].equals("-data")&&!args[i+1].equals("-mode")){
+                try{
+                    File file = new File(args[i+1]);
+                    Scanner sc=new Scanner(file);
+                    str=sc.nextLine();
+                    sc.close();
+                }catch(Exception e){
+                    System.out.println(e.getMessage());
+                    return;
+                }
+            }else if(i<args.length-1&&args[i].equals("-out")&&!args[i+1].equals("-data")&&!args[i+1].equals("-in")&&!args[i+1].equals("-data")&&!args[i+1].equals("-mode")){
+                out=args[i+1];
+            }
+        }
+        if(str.equals("")){
+            str=scanner.nextLine();
+        }
+        if(k==Integer.MIN_VALUE) {
+            k=scanner.nextInt();
+        }
+        func=func.toLowerCase();
+        if(func.equals("enc")){
+            str=encrypt(str,k);
+        }else if(func.equals("dec")){
+            str=decrypt(str,k);
+        }
+        if(out.equals("")){
+            System.out.println(str);
+        }else{
+            try {
+                File file = new File(out);
+                FileWriter writer = new FileWriter(file);
+                writer.write(str);
+                writer.close();
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+
+    }
+    private static String encrypt(String str,int k){
+        int n=str.length();
+        String res=new String("");
+        for(int i=0;i<n;i++){
+            char ch=str.charAt(i);
+            int asc=(int)ch+k;
+            ch=(char)asc;
+            res+=Character.toString(ch);
+        }
+        return res;
+    }
+    private static String decrypt(String str,int k){
+        int n=str.length();
+        String res=new String("");
+        for(int i=0;i<n;i++){
+            char ch=str.charAt(i);
+            int asc=(int)ch-k;
+            ch=(char)asc;
+            res+=Character.toString(ch);
+        }
+        return res;
+    }
+}
