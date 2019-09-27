@@ -7,32 +7,26 @@ int main() {
 	while(t-->0){
 	    int n;
 	    cin>>n;
-	    int arr[n],brr[n];
+	    int arr[n+1],brr[n];
 	    for(int i=0;i<n;i++){
 	        cin>>arr[i];
 	        brr[i]=1;
 	    }
+	    arr[n]=arr[n-1]<0?-1:1;
 	    int count=1,res=1,dum=1;
-	    for(int i=0;i<n-1;i++){
+	    for(int i=0;i<n;i++){
 	        int l=arr[i];
 	        int m=arr[i+1];
 	        if(l<0&&m>=0||l>=0&&m<0){
-	            cout<<arr[i]<<" ";
 	            count++;
 	            res=i;
 	            continue;
-	           // cout<<"kj";
-	        }else if(i==n-2){
-	        
-	            dum=0;
 	        }else{
-	            cout<<"   "<<arr[i]<<"   ";
 	            dum=0;
 	        }
 	        
 	        if(dum==0&&count>1){
-	            
-	            for(int j=i-res;j<i;j++){
+	            for(int j=i-count+1;j<i;j++){
 	                brr[j]=count;
 	                count--;
 	            }
@@ -47,3 +41,4 @@ int main() {
 	}
 	return 0;
 }
+
