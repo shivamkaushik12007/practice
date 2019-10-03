@@ -94,3 +94,93 @@
 //             })();
 // console.log(result);
 
+//Objects
+// let obj={};
+// obj.name="abc";
+// obj.age=12;
+// console.log(obj);
+// console.log(obj.name);
+// console.log(obj.age);
+// obj.name="xyz";
+// console.log(obj.name);
+
+// let obj1={//also know as json format
+//     name:"abc",
+//     age:18,
+//     interest:['gaming','reading'],
+//     greet:function(){console.log("function mein")},
+//     address:{street:12,sector:25}
+// }
+// console.log(obj1.name);
+// console.log(obj1.age);
+// console.log(obj1.interest);
+// for(let i=0;i<obj1.interest.length;i++){
+//     console.log(obj1.interest[i]);
+// }
+// console.log(obj1.address.street);
+// console.log(obj1.address.sector);
+// obj1.greet();
+// obj1.newprop="new";
+// console.log(obj1.newprop);
+
+// function Person(name){
+//     this.name=name;
+//     this.greet=function(){return "hello "+this.name};
+// } 
+// let obj1=new Person("cool");
+// console.log(obj1.name);
+// console.log(obj1.greet());
+// let obj=new Person("abc");
+// console.log(obj.name);
+// console.log(obj.greet());
+
+// class Person{
+//     constructor(name){
+//         this.name=name;
+//     }
+//     greet(){console.log("set");}
+// }
+// class Student extends Person{
+//     constructor(name,grade){
+//         super(name);
+//         this.grade=grade;
+//     }
+//     getClass(){
+//         return this.grade;
+//     }
+// }
+// let obj=new Person("demo");
+// console.log(obj.name);
+// obj.greet();
+// let sobj=new Student("name",99);
+// console.log(sobj.getClass());
+// console.log(sobj.name);
+
+/*MODULES and PROMISES*/
+//modules 
+//ES5
+// var xyz=require("./module.js");
+// console.log(xyz);
+//ES6
+// import xyz from "./module.js";//have to install babel
+// console.log(xyz);
+
+//problem in synchronous code
+// console.log("before");
+// console.log(func1());
+// func();
+// console.log("after");
+// console.log(func1());
+// function func1(){
+//     setTimeout(()=>{return 1},2000);
+// }
+// function func(){
+//     setTimeout(()=>{console.log(1)},2000);
+// }
+
+// console.log("before");  /it is kind of "callback hell"
+// func((x)=>{console.log(x);console.log("after");});
+// // console.log("after");
+// function func(callback){
+//     setTimeout(()=>{callback(1)},2000);
+// }
