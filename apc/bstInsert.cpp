@@ -22,7 +22,7 @@ struct node* insert(struct node* h,int data){
 		if(h->data > data)
 			h->left=insert(h->left,data);
 		if(h->data < data) 
-			h->left=insert(h->right,data);
+			h->right=insert(h->right,data);
 			
 		return h;
 }
