@@ -195,3 +195,46 @@
 // console.log(x.c);
 // console.log(x());
 
+// console.log('before')
+// console.log(func())
+// console.log('after')
+// function func(){
+//     setTimeout(()=>{return "hello"},2000)
+// }
+
+
+// fun1((x)=>{
+//     fun2(x.id,(y)=>{
+//         fun3(y[0],(z)=>{
+//             console.log(z)
+//         });
+//     });
+// });
+// function fun1(callback){
+//     setTimeout(()=>{callback({id:1,name:'abc'})},2000);
+// }    
+// function fun2(x,callback){
+//     setTimeout((c)=>{console.log(x);
+//         callback([4,5,6]);},2000);
+// }
+// function fun3(y,callback){
+//     setTimeout(()=>{console.log(y);
+//         console.log("done");},1000);
+// }
+
+// fun1(dfun2); ///toremove the heirarchy
+// function dfun2(x){
+//     fun2(x.id,dfun3);
+// }
+// function dfun3(y){
+//     fun3(y[0],display);
+// }
+// function display(z){
+//     console.log(z);
+// }
+
+//PROMISES
+let p=new Promise((resolve,reject)=>{
+    resolve("hello");
+})
+p.then((x)=>{console.log(x)});
