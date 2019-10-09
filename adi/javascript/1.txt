@@ -1,0 +1,23 @@
+variables in js
+-> type independent
+-> var uptill ES5
+* js in not the language ES(EcmaScript) is!
+-> let & const
+->javascript engines for browsers according to ECMA SPECIFICATION
+
+
+number,string,boolean,NULL,undefined
+
+first class functions:
+js is one of those language which treats functions as normal variables.
+
+///INSTALLING NPM OR DEPENDENCIES
+npm init
+
+npm install --save-dev @babel/core @babel/cli @babel/preset-env @babel/node
+
+npmm install --save-dev nodemon
+
+"start":"nodemon --exec babel-node index.js", //changes in package.json at SCRIPTS
+
+npm run start
