@@ -16,8 +16,17 @@ npm init
 
 npm install --save-dev @babel/core @babel/cli @babel/preset-env @babel/node
 
-npmm install --save-dev nodemon
+npm install --save-dev nodemon
 
 "start":"nodemon --exec babel-node index.js", //changes in package.json at SCRIPTS
 
 npm run start
+
+//SYMBOL
+it is not possible to view the value of the symbol and symbol always generate new unique value
+we can share symbol using for fucnction "{let s=Symbol.for("age")}"
+
+?*variable arguments*?
+
+//generators
+//represents generator and it atomatically use iterator
