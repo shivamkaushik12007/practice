@@ -234,7 +234,46 @@
 // }
 
 //PROMISES
-let p=new Promise((resolve,reject)=>{
-    resolve("hello");
-})
-p.then((x)=>{console.log(x)});
+// let p=new Promise((resolve,reject)=>{
+//     resolve("hello");
+// })
+// p.then((x)=>{console.log(x)});
+
+// "10/10/19"
+// let p=new Promise((resolve,reject)=>{
+//     resolve("hello");
+// })
+// p.then((x)=>{console.log(x)});
+// function getUserId(name){
+//         return new Promise((resolve,reject)=>{
+//             resolve(20);
+//         });
+// }
+// function getBalance(id){
+//     setTimeout(()=>{
+//         return newPromise((resolve,reject)=>{
+//             resolve(2000);
+//         });
+//     },2000);
+// } 
+// getUserId(name)
+// .then((id)=>{
+//     getBalance(id);
+// })
+// .then((balance)=>{
+//     console.log(balance);
+// })
+
+/*STRING*/
+// let str="hello world";
+
+let set=new Set();
+set.add(1);
+set.add(2);
+set.add(1);
+set.add('hello');
+set.add({a:1,b:2})
+set.add({a:1,b:2})
+console.log(set.size);
+set.delete(1)
+console.log(set);
