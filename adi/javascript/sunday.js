@@ -43,3 +43,79 @@ array.forEach2((item)=>{
 	console.log(item);
 })
 */
+
+
+
+//13/10/19
+/*
+var foo=function(name){
+	this.name=name,
+	this.methods=fooMethods	
+}
+var fooMethods={
+	doSomething:function(){
+		console.log('do something')
+    },
+	doMore:function(){
+		console.log('domore')
+    }
+}
+var obj1=new foo('some name');
+obj1.methods.doSomething()
+*/
+
+
+
+/*
+var str=[
+  {
+    name:"n1",
+    marks:20
+  },
+  {
+    name:"n2",
+    marks:40
+  },
+  {
+    name:"n3",
+    marks:50
+  },
+  {
+    name:"n4",
+    marks:10
+  },
+  {
+    name:"n5",
+    marks:50
+  }
+]
+
+for(let i=0;i<str.length;i++){
+  if(str[i].marks>=40){
+    console.log(str[i]);
+  }
+}
+let v=str.filter((students)=>{
+  return students.marks<40;
+})
+console.log(v);
+*/
+
+
+
+/*
+class Student{
+  constructor(name){
+    this.name=name;
+  }
+  addProps(){
+    this.value="random";
+  }
+  showProperties(){
+    console.log(`the value are:
+                ${this.name}`);
+  }
+}
+
+var x=new Student("Some name");
+*/
