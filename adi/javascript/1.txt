@@ -69,3 +69,10 @@ server  properties
 multithreading,availability,database connectivity,security
 
 nodejs is arun time environment and we can also host our server on it and it has npm init
+
+
+
+//16/10/19
+***PROPS
+**STATE
+*SETsTATE
