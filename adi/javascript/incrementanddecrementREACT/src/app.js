@@ -6,7 +6,6 @@ export default class App extends Component{
         super();
         this.state={
             number:0
-            // number:
         }
     }
     increment=()=>{
@@ -25,7 +24,6 @@ export default class App extends Component{
     }
     render(){
         return <div>
-            <input type="number" id="value"/>
             <h1>Count : {this.state.number}</h1>
             <button onClick={this.increment}>increment the number</button>
             <button onClick={this.decrement}>decrement the number</button>

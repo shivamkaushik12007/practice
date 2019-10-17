@@ -35,6 +35,7 @@ we can share symbol using for fucnction "{let s=Symbol.for("age")}"
 //INSTALLING REACT
 npm install -g create-react-app
 create-react-app projectreact
+npm cache clean --force//if needed
 
 
 //REACT
