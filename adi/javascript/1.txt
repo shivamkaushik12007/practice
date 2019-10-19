@@ -77,3 +77,12 @@ nodejs is a run time environment and we can also host our server on it and it ha
 ***PROPS
 **STATE
 *SETsTATE
+
+
+//19-10-19
+HTTP protocol
+REST(representational state transfer and it runs on http protocol) vs SOAP(simple object access protocol)
+HTTP METHODS
+TCP
+COMPONENTS of websites
+SAMPLE APPLICATION
