@@ -470,4 +470,112 @@ dbms_output.put_line('pragama exception');
 end;
 
 
+/*CURSORS*/
+~Declare
+eid emp.empno%type;
+name emp.ename%type;
+salary emp.sal%type;
+cursor cursor1 is select ename,empno,sal from emp;
+Begin
+open cursor1;
+loop
+fetch cursor1 into name,eid,salary;
+exit when cursor1%notfound;
+dbms_output.put_line('eid = '||eid||' name = '||name||' salary = '||salary);
+end loop;
+
+delete from emp where empno=500;
+
+close cursor1;
+end;
+
+
+Declare
+eid emp.empno%type;
+name emp.ename%type;
+salary emp.sal%type;
+job emp.job%type;
+cursor cursor1 is select ename,empno,sal,job from emp;
+Begin
+open cursor1;
+loop
+fetch cursor1 into name,eid,salary,job;
+exit when cursor1%notfound;
+if(job = 'CLERK') then
+salary:=salary+(.08*salary);
+elsif(job ='SALESMAN')then
+salary:=salary+(.05*salary);
+end if;
+dbms_output.put_line('eid = '||eid||' name = '||name||' salary = '||salary);
+end loop;
+close cursor1;
+end;
+select * from emp;
+
+
+~Declare
+salary emp.sal%type;
+cursor c1 is select sal from emp where job='MANAGER';
+Begin
+open c1;
+loop
+fetch c1 into salary;
+exit when c1%notfound;
+salary:=salary*1.5;
+dbms_output.put_line('salary = '||salary);
+end loop;
+close c1;
+end;
+select * from emp;
+
+
+/*do for loop cursor and passing parameter to cursor on your own(notebook)*/
+
+
+//subprograms
+	/*procedur*/
+		/*local*/
+declare
+a number;
+b number;
+c number;
+d number;
+e number;
+procedure p1(a number,b in number,c out number,d out number,e out number)
+is
+begin
+c:=a+b;
+d:=a-b;
+e:=a*b;
+end p1;
+begin
+a:=:a;
+b:=:b;
+p1(a,b,c,d,e);
+dbms_output.put_line('add = '||c||' subtract = '||d||' multiply = '||e);
+end;
+
+/*stored procedure*/
+declare
+a number;
+b number;
+c number;
+d number;
+e number;
+begin
+a:=:a;
+b:=:b;
+proc1(a,b,c,d,e);
+dbms_output.put_line('add '||c);
+end;
+
+
+create or replace
+procedure proc1(a number,b in number,c out number,d out number,e out number)
+is
+begin
+c:=a+b;
+d:=a-b;
+e:=a*b;
+end proc1;
 
