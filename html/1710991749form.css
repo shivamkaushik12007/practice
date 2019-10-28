@@ -1,0 +1,14 @@
+.hello{
+width:20%;
+background-color:pink;
+color:red;
+}
+.hello1{
+	background-color:skyblue;
+}
+.hello2{
+	background-color:royalblue;
+}
+::placeholder{
+	color:brown;
+}
