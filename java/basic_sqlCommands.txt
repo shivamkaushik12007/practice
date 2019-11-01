@@ -579,3 +579,74 @@ d:=a-b;
 e:=a*b;
 end proc1;
 
+
+
+
+/*FUNCTIONS*/
+
+create or replace function F1(emp_no number) return number is
+salary number;
+Begin
+select sal into salary from emp where empno=emp_no;
+return salary;
+end;
+
+Declare
+empno number;
+sal number;
+Begin
+empno:=:empno;
+sal:=F1(empno);
+dbms_output.put_line('salary is '||sal);
+end;
+
+select * from emp;
+
+
+
+~Declare
+empno number;
+sal number;
+function F1(emp_no number) return number is
+salary number;
+Begin
+select sal into salary from emp where empno=emp_no;
+return salary;
+end F1;
+Begin
+empno:=:empno;
+sal:=F1(empno);
+dbms_output.put_line('salary is '||sal);
+end;
+
+
+/*PACKAGES*/
+create or replace package packname is
+procedure displaySquare(a number);
+procedure displayCube(a number);
+end;
+
+create or replace package body packname is
+procedure displaySquare(a number) is
+c number;
+Begin
+c:=a*a;
+dbms_output.put_line('square is '||c);
+end;
+procedure displayCube(a number) is
+c number;
+Begin
+c:=a*a*a;
+dbms_output.put_line('cube is '||c);
+end;
+end;
+
+Declare 
+a number;
+Begin
+a:=:a;
+packname.displaySquare(a);
+packname.displayCube(a);
+end;
+
+
