@@ -86,3 +86,9 @@ HTTP METHODS
 TCP
 COMPONENTS of websites
 SAMPLE APPLICATION
+
+
+//3-11-19
+lifecycle hooks
+npm install -g json-server
+json-srver --watch db.json
