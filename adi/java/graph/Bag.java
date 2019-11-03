@@ -1,6 +1,8 @@
 package com.graph;
 
-public class Bag implements Iterrable<T>{
+import java.util.Iterator;
+
+public class Bag implements Iterable<Integer>{
     private Node head;
 
     public static void main(){
@@ -16,6 +18,24 @@ public class Bag implements Iterrable<T>{
         head.next=insert(head.next,key);
         return head;
     }
+
+    @Override
+    public Iterator<Integer> iterator() {
+        return new Iterator<Integer>(){
+            private Node temp=head;
+            @Override
+            public boolean hasNext(){
+                return temp!=null;
+            }
+
+            public Integer next(){
+                int t=temp.key;
+                temp=temp.next;
+                return t;
+            }
+        };
+    }
+
     private class Node{
         private int key;
         private Node next;

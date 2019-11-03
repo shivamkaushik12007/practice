@@ -6,7 +6,7 @@ public class Main {
         b.insert(10);
         b.insert(11);
         b.insert(12);
-        b.print();
+//        b.print();
     }
 
 }
