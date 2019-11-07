@@ -15,9 +15,38 @@ public class Graph {
     }
 
     public void dfs(){
-
+		marked = new boolean[V];
+		edgeTo = new int[V];
+		marked[0]=true;
+		edgeTo[0]=0;
+		dfs(0);
     }
-
+	
+	private void dfs(int u){
+		for(int i:arr[u]){
+			if(!marked[i]){
+				marked[i]=true;
+				edgeTo[i]=u;
+				dfs(i);
+			}
+		}
+	}
+	
+	public boolean isConnected(int v){
+		return marked[v];
+	}
+	
+	public Stack<Integer> path(int v){
+		if(!marked[v])
+			return null;
+		Stack<Integer> st=new Stack<Integer>();
+		while(v!=0){
+			st.push(v);
+			v=edgeTo[v];
+		}
+		return st;
+	}
+	
     public int edge(){
         return E;
     }
