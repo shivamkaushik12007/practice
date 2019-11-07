@@ -23,7 +23,7 @@ public class Graph {
     }
 	
 	private void dfs(int u){
-		for(int i:arr[u]){
+		for(int i:arr(u)){
 			if(!marked[i]){
 				marked[i]=true;
 				edgeTo[i]=u;
@@ -33,12 +33,19 @@ public class Graph {
 	}
 	
 	public boolean isConnected(int v){
+		if(marked==null)
+			throw new RuntimeException("run dfs first");
+		
 		return marked[v];
 	}
 	
 	public Stack<Integer> path(int v){
+		if(marked==null)
+			throw new RuntimeException("run dfs first");
+		
 		if(!marked[v])
 			return null;
+		
 		Stack<Integer> st=new Stack<Integer>();
 		while(v!=0){
 			st.push(v);
