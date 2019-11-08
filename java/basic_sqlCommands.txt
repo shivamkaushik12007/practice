@@ -650,3 +650,53 @@ packname.displayCube(a);
 end;
 
 
+~Declare
+name emp.ename%type;
+cursor cemp is select ename from emp;
+Begin
+open cemp;
+loop
+fetch cemp into name;
+exit when cemp%notfound;
+dbms_output.put_line('name = '||name);
+end loop;
+dbms_output.put_line(cemp%rowcount);
+close cemp;
+end;
+
+
+create or replace package emp_info is
+function get_record(a number) return emp%rowtype;
+procedure set_record(record emp%rowtype);
+end;
+
+create or replace package body emp_info is
+function get_record(a number) return emp%rowtype is
+result emp%rowtype;
+begin
+select * into result from emp where empno=a;
+return result;
+end;
+procedure set_record(record in emp%rowtype) is
+begin
+insert into emp values(record.empno,record.ename,record.job,record.mgr,record.hiredate,record.sal,record.comm,record.deptno);
+end;
+end;
+
+declare
+a number;
+record emp%rowtype;
+begin
+a:=:a;
+
+record.empno:=001;
+record.ename:='abcd';
+emp_info.set_record(record);
+
+record:=emp_info.get_record(a);
+
+dbms_output.put_line(record.empno|| record.ename);
+
+end;
+
+
