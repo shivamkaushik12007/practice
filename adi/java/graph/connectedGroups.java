@@ -37,7 +37,6 @@ class Result {
                 dfs(arr.get(ind).get(i),visited,arr);
             }
         }
-        // return 0;
     }
 
 }
