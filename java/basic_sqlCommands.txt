@@ -700,3 +700,36 @@ dbms_output.put_line(record.empno|| record.ename);
 end;
 
 
+~create table new_table(empno number,ename char,job char,mgr number,hiredate date,sal number,comm number,deptno number);
+create or replace trigger t1
+before delete on emp
+for each row
+Begin
+insert into new_table(empno,ename,job,mgr,hiredate,sal,comm,deptno)values(:old.empno,:old.ename,:old.job,:old.mgr,:old.hiredate,:old.sal,:old.comm,:old.deptno);
+end;
+delete from emp where empno=7839;
+
+create or replace trigger empin12
+before insert on emp
+for each row
+Begin
+if :new.sal<2500 then
+dbms_output.put_line('sal less than 2500');
+end if;
+end;
+insert into emp (empno,ename,job,mgr,hiredate,sal,comm,deptno) values(100,'asdg','assdsg',455,'11/23/1981',522,20,20);
+select * from emp;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
