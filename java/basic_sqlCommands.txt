@@ -722,6 +722,55 @@ select * from emp;
 
 
 
+Declare
+eid emp.empno%type;
+name emp.ename%type;
+salary emp.sal%type;
+cursor cursor1 is select ename,empno,sal from emp;
+Begin
+open cursor1;
+loop
+fetch cursor1 into name,eid,salary;
+exit when cursor1%notfound;
+dbms_output.put_line('eid = '||eid||' name = '||name||' salary = '||salary);
+end loop;
+delete from emp where empno=500;
+dbms_output.put_line(cursor1%rowcount);
+close cursor1;
+end;
+
+
+create table cust(name char(10),sal number(20),dept char(10),desg char(20));
+insert into cust(name,sal,dept,desg) values('abc',200000,'it','man');
+insert into cust(name,sal,dept,desg) values('abs',100000,'ip','mam');
+insert into cust(name,sal,dept,desg) values('aba',200000,'il','mao');
+insert into cust(name,sal,dept,desg) values('abd',100000,'im','map');
+insert into cust(name,sal,dept,desg) values('abv',200000,'in','maq');
+
+
+create or replace function fund return number is
+a number;
+na cust.name%type;
+ea cust.sal%type;
+cursor cu1 is select name,sal from cust;
+Begin
+open cu1;
+loop
+fetch cu1 into na,ea;
+exit when cu1%notfound;
+a:=cu1%rowcount;
+end loop;
+return a;
+end fund;
+
+Declare
+s number;
+Begin
+s:=fund;
+dbms_output.put_line(s);
+end;
+
+
 
 
 
