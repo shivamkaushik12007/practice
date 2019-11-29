@@ -92,3 +92,162 @@ SAMPLE APPLICATION
 lifecycle hooks
 npm install -g json-server
 json-srver --watch db.json
+
+
+> use uca
+switched to db uca
+> show db
+2019-11-29T11:10:24.088+0530 E  QUERY    [js] uncaught exception: Error: don't know how to show [db] :
+shellHelper.show@src/mongo/shell/utils.js:1139:11
+shellHelper@src/mongo/shell/utils.js:790:15
+@(shellhelp2):1:1
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> db.createCollection("users")
+{ "ok" : 1 }
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+uca     0.000GB
+> db.users.insertOne({name:"shivam"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("5de0afc120bfd62c421d0e3b")
+}
+> db.users.find()
+{ "_id" : ObjectId("5de0afc120bfd62c421d0e3b"), "name" : "shivam" }
+> db.users.insertMany([{name:"n1"},{name:"n2"}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("5de0b11f20bfd62c421d0e3c"),
+                ObjectId("5de0b11f20bfd62c421d0e3d")
+        ]
+}
+> db.users.find()
+{ "_id" : ObjectId("5de0afc120bfd62c421d0e3b"), "name" : "shivam" }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3c"), "name" : "n1" }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3d"), "name" : "n2" }
+>> use uca
+switched to db uca
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+uca     0.000GB
+> db.users.find()
+{ "_id" : ObjectId("5de0afc120bfd62c421d0e3b"), "name" : "shivam" }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3c"), "name" : "n1" }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3d"), "name" : "n2" }
+> db.users.insertOne({name:"n3",class:"uca"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("5de0b1d821b0b8d8ee42c8ee")
+}
+> db.users.find()
+{ "_id" : ObjectId("5de0afc120bfd62c421d0e3b"), "name" : "shivam" }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3c"), "name" : "n1" }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3d"), "name" : "n2" }
+{ "_id" : ObjectId("5de0b1d821b0b8d8ee42c8ee"), "name" : "n3", "class" : "uca" }
+> db.users.find({},{name:1})
+{ "_id" : ObjectId("5de0afc120bfd62c421d0e3b"), "name" : "shivam" }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3c"), "name" : "n1" }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3d"), "name" : "n2" }
+{ "_id" : ObjectId("5de0b1d821b0b8d8ee42c8ee"), "name" : "n3" }
+> db.users.find({},{name:0})
+{ "_id" : ObjectId("5de0afc120bfd62c421d0e3b") }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3c") }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3d") }
+{ "_id" : ObjectId("5de0b1d821b0b8d8ee42c8ee"), "class" : "uca" }
+> db.users.find({name:"shivam"})
+{ "_id" : ObjectId("5de0afc120bfd62c421d0e3b"), "name" : "shivam" }
+> db.users.updateOne({name:"shivam"}, {$set: {name:"Shivam"}})
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.users.find()
+{ "_id" : ObjectId("5de0afc120bfd62c421d0e3b"), "name" : "Shivam" }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3c"), "name" : "n1" }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3d"), "name" : "n2" }
+{ "_id" : ObjectId("5de0b1d821b0b8d8ee42c8ee"), "name" : "n3", "class" : "uca" }
+> db.users.insertOne({name:"n4",class:"uca",university:"chitkara"})
+
+
+
+> use uca
+switched to db uca
+> db show
+2019-11-29T11:31:58.005+0530 E  QUERY    [js] uncaught exception: SyntaxError: unexpected token: identifier :
+@(shell):1:3
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+uca     0.000GB
+> db.users.insertOne({name"n23",class:"uca",university:"chitkara"})
+2019-11-29T11:33:00.293+0530 E  QUERY    [js] uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:24
+> db.users.find();
+{ "_id" : ObjectId("5de0afc120bfd62c421d0e3b"), "name" : "Shivam" }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3c"), "name" : "n1" }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3d"), "name" : "n2" }
+{ "_id" : ObjectId("5de0b1d821b0b8d8ee42c8ee"), "name" : "n3", "class" : "uca" }
+> db.users.insertOne({name"n23",class:"uca",university:"chitkara"})
+2019-11-29T11:33:34.530+0530 E  QUERY    [js] uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:24
+> db.users.insertOne({name:"n23",class:"uca",university:"chitkara"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("5de0b4c121b0b8d8ee42c8ef")
+}
+> db.users.find();
+{ "_id" : ObjectId("5de0afc120bfd62c421d0e3b"), "name" : "Shivam" }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3c"), "name" : "n1" }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3d"), "name" : "n2" }
+{ "_id" : ObjectId("5de0b1d821b0b8d8ee42c8ee"), "name" : "n3", "class" : "uca" }
+{ "_id" : ObjectId("5de0b4c121b0b8d8ee42c8ef"), "name" : "n23", "class" : "uca", "university" : "chitkara" }
+> db.users.updateMany({},{$set:{university:"Chitkara"}})
+{ "acknowledged" : true, "matchedCount" : 5, "modifiedCount" : 5 }
+> db.users.find();
+{ "_id" : ObjectId("5de0afc120bfd62c421d0e3b"), "name" : "Shivam", "university" : "Chitkara" }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3c"), "name" : "n1", "university" : "Chitkara" }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3d"), "name" : "n2", "university" : "Chitkara" }
+{ "_id" : ObjectId("5de0b1d821b0b8d8ee42c8ee"), "name" : "n3", "class" : "uca", "university" : "Chitkara" }
+{ "_id" : ObjectId("5de0b4c121b0b8d8ee42c8ef"), "name" : "n23", "class" : "uca", "university" : "Chitkara" }
+> db.users.updateMany({},{$set:{class:"UCA"}})
+{ "acknowledged" : true, "matchedCount" : 5, "modifiedCount" : 5 }
+> db.users.find();
+{ "_id" : ObjectId("5de0afc120bfd62c421d0e3b"), "name" : "Shivam", "university" : "Chitkara", "class" : "UCA" }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3c"), "name" : "n1", "university" : "Chitkara", "class" : "UCA" }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3d"), "name" : "n2", "university" : "Chitkara", "class" : "UCA" }
+{ "_id" : ObjectId("5de0b1d821b0b8d8ee42c8ee"), "name" : "n3", "class" : "UCA", "university" : "Chitkara" }
+{ "_id" : ObjectId("5de0b4c121b0b8d8ee42c8ef"), "name" : "n23", "class" : "UCA", "university" : "Chitkara" }
+> db.users.deleteOne({name:"Shivam"})
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.users.find();
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3c"), "name" : "n1", "university" : "Chitkara", "class" : "UCA" }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3d"), "name" : "n2", "university" : "Chitkara", "class" : "UCA" }
+{ "_id" : ObjectId("5de0b1d821b0b8d8ee42c8ee"), "name" : "n3", "class" : "UCA", "university" : "Chitkara" }
+{ "_id" : ObjectId("5de0b4c121b0b8d8ee42c8ef"), "name" : "n23", "class" : "UCA", "university" : "Chitkara" }
+> db.users.updateOne({name:"n23"}, {$set: {name:"n4"}})
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.users.find();
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3c"), "name" : "n1", "university" : "Chitkara", "class" : "UCA" }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3d"), "name" : "n2", "university" : "Chitkara", "class" : "UCA" }
+{ "_id" : ObjectId("5de0b1d821b0b8d8ee42c8ee"), "name" : "n3", "class" : "UCA", "university" : "Chitkara" }
+{ "_id" : ObjectId("5de0b4c121b0b8d8ee42c8ef"), "name" : "n4", "class" : "UCA", "university" : "Chitkara" }
+> db.users.updateMany({},{$unset:{university:"Chitkara"}})
+{ "acknowledged" : true, "matchedCount" : 4, "modifiedCount" : 4 }
+> db.users.find();
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3c"), "name" : "n1", "class" : "UCA" }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3d"), "name" : "n2", "class" : "UCA" }
+{ "_id" : ObjectId("5de0b1d821b0b8d8ee42c8ee"), "name" : "n3", "class" : "UCA" }
+{ "_id" : ObjectId("5de0b4c121b0b8d8ee42c8ef"), "name" : "n4", "class" : "UCA" }
+> db.users.updateMany({},{$set:{university:"Chitkara"}})
+{ "acknowledged" : true, "matchedCount" : 4, "modifiedCount" : 4 }
+> db.users.find();
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3c"), "name" : "n1", "class" : "UCA", "university" : "Chitkara" }
+{ "_id" : ObjectId("5de0b11f20bfd62c421d0e3d"), "name" : "n2", "class" : "UCA", "university" : "Chitkara" }
+{ "_id" : ObjectId("5de0b1d821b0b8d8ee42c8ee"), "name" : "n3", "class" : "UCA", "university" : "Chitkara" }
+{ "_id" : ObjectId("5de0b4c121b0b8d8ee42c8ef"), "name" : "n4", "class" : "UCA", "university" : "Chitkara" }
