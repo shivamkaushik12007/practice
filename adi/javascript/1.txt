@@ -251,3 +251,11 @@ uca     0.000GB
 { "_id" : ObjectId("5de0b11f20bfd62c421d0e3d"), "name" : "n2", "class" : "UCA", "university" : "Chitkara" }
 { "_id" : ObjectId("5de0b1d821b0b8d8ee42c8ee"), "name" : "n3", "class" : "UCA", "university" : "Chitkara" }
 { "_id" : ObjectId("5de0b4c121b0b8d8ee42c8ef"), "name" : "n4", "class" : "UCA", "university" : "Chitkara" }
+
+
+
+
+
+
+~node --inspect index.js //for the debugging of node js
+about:inspect in chrome for debugging window
