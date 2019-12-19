@@ -1,0 +1,19 @@
+public class Solution {
+    public int gcd(int A, int B) {
+        if(A==0)
+            return B;
+        if(B==0)
+            return A;
+        if(A==B)
+            return A;
+        int k=A>B?B:A;
+        // k=k/2;
+        // System.out.println(k);
+        while(k>=1){
+            if(A%k==0&&B%k==0)
+                return k;
+            k--;
+        }
+        return 1;
+    }
+}
