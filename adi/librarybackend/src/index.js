@@ -1,8 +1,10 @@
 const express = require('express');
 const bodyParser=require("body-parser");
+const session=require('express-session');
 require('./dbConnection')
 var app = express();
 var users=require('./routes/users')
+
 // app.<METHODNAME>('path',handler()=>{})
 var books=[
     {
@@ -12,7 +14,12 @@ var books=[
 ];
 
 app.use(bodyParser.json());
-
+app.use(session({
+    key:"library", 
+    secret:"library"
+}))
+app.use("/",express.static('static'))
+app.use("/home",express.static('static'))
 app.use("*",(req,res,next)=>{
     console.log("middleware is called");
     res.setHeader('Access-Control-Allow-Origin',"*");
