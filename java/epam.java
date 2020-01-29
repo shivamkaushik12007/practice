@@ -1,4 +1,3 @@
-//epam wala code yaha aega!
 class Solution{
   public static int solve(int[] arr){
     int n=arr.length;
