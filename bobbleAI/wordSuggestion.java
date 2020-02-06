@@ -6,12 +6,12 @@ import java.lang.*;
 public class WordSuggestion{
     ArrayList<String> res=new ArrayList<>();
 	public static void main(String[] args){
-	    String csvFile = args[0];
+	String csvFile = args[0];
         String line = "";
         String word=args[1];
-        int size=word.size();
+        int size=word.length();
         ArrayList<String> arr1=new ArrayList<>();
-        ArrayList<String> arr2=new ArrayList<>();
+        ArrayList<Integer> arr2=new ArrayList<>();
         ArrayList<Thing> res=new ArrayList<>();
 		try{
 		    BufferedReader br=new BufferedReader(new FileReader(csvFile));
@@ -21,14 +21,14 @@ public class WordSuggestion{
                 inp[1]=inp[1].trim();
                 arr2.add(Integer.parseInt(inp[1]));
             }
-            for(int i=0;i<arr.size();i++){
-                if(arr.get(i).length()==size){
+            for(int i=0;i<arr1.size();i++){
+                if(arr1.get(i).length()==size){
                     int k=check(arr1.get(i),word);
                     Thing t=new Thing(arr1.get(i),arr2.get(i),k);
                     res.add(t);
                 }
             }
-            Collections.sort(t,new Comparator<Thing>(){
+            Collections.sort(res,new Comparator<Thing>(){
               public int compare(Thing t1,Thing t2){
                   if(t1.diff==t2.diff){
                       return t2.freq-t1.freq;
@@ -42,13 +42,13 @@ public class WordSuggestion{
                 resNum++;
             }
             if(res.size()>=5){
-                Systeem.out.println(res.get(resNum).s);
+                System.out.println(res.get(resNum).s);
             }
 		}catch(IOException e){
 		    e.printStackTrace();
 		}
 	}
-	public static void check(String s,String word){
+	public static int check(String s,String word){
 	    int arr[][]=new int[s.length()+1][word.length()+1];
 	    for(int i=1;i<=s.length();i++){
 	        for(int j=1;j<=word.length();j++){
@@ -65,7 +65,7 @@ public class WordSuggestion{
 	    return arr[s.length()][word.length()];
 	}
 }
-public class Thing{
+class Thing{
     String s;
     int freq;
     int diff;
