@@ -7,7 +7,7 @@
 import java.util.*;
 import java.lang.*;
 public class Permutation{
-    ArrayList<String> res=new ArrayList<>();
+    static ArrayList<String> res=new ArrayList<>();
 	public static void main(String[] args){
 	    String csvFile = "input.csv";
         String line = "";
@@ -15,10 +15,10 @@ public class Permutation{
 		try{
 		    BufferedReader br=new BufferedReader(new FileReader(csvFile));
             while ((line=br.readLine())!=null) {
-                char[] inp=line.split(",");
+                String[] inp=line.split(",");
                 ArrayList<String> temp=new ArrayList<>();
                 for(int i=0;i<inp.length;i++){
-                    temp.add(Character.toString(inp[i]));
+                    temp.add(inp[i]);
                 }
                 arr.add(temp);
             }
@@ -31,7 +31,7 @@ public class Permutation{
 		    e.printStackTrace();
 		}
 	}
-	public static void permutationCheck(ArrayList<ArrayList<Integer>> arr,int level,String s){
+	public static void permutationCheck(ArrayList<ArrayList<String>> arr,int level,String s){
 	    if(level==arr.size()){
 	        return;
 	    }
