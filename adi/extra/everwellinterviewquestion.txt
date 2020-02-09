@@ -1,0 +1,33 @@
+difference between encryption and encoding
+hashing and encryption
+what is hashing how it works
+8 balls 1 of them is defected find the one with only two weights
+var and let
+oops concepts 
+github commands and version control
+most frequent number in array
+index of number in sorted array
+all projects 
+data flow in web app
+get,put,delete.... all requests
+why prefer java
+
+
+
+loop length in linked list
+bottom view of tree
+prime number
+1 to n prime number (sieve algo)
+polymorphisom and inheritence
+can static method be overridden
+
+
+
+why it
+why everwell
+about project
+why mongo
+advantage of mongo
+other than mongo and why
+sql commands
+ 
