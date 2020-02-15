@@ -16,6 +16,18 @@ public class LL<T>{
         }
         temp.next=new LL(l);
     }
+    
+//     public void append(T l){
+//         if(this==null){
+//             this.next=new LL(l);
+//             return;
+//         }
+//         LL temp=this;
+//         while(temp.next!=null){
+//             temp=temp.next;
+//         }
+//         temp.next=new LL(l);
+//     }
     public void print(){
         LL temp=this.next;
         while(temp!=null){
