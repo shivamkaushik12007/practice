@@ -1,4 +1,4 @@
-//increasing
+//increasing order of stack
 import java.util.*;
 import java.lang.*;
 public class Main {
@@ -27,8 +27,8 @@ public class Main {
     }
 
 }
-//decreasing
 
+//decreasing order of stack
 import java.util.*;
 import java.lang.*;
 public class Main {
