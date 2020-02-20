@@ -18,7 +18,7 @@ struct node* insert(struct node* h,int data){
 		if(h==NULL){
 			return newNode(data);
 		}
-		
+		//for handling multiple duplicate value if(h->data => data)
 		if(h->data > data)
 			h->left=insert(h->left,data);
 		if(h->data < data) 
