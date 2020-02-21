@@ -17,6 +17,20 @@ public class LL<T>{
         temp.next=new LL(l);
     }
     
+    
+    //a new way to do linked list without inner class
+//     public void append(T l){
+//         if(this==null){
+//             this.val=l;
+//             return;
+//         }
+//         LL temp=this;
+//         while(temp.next!=null){
+//             temp=temp.next;
+//         }
+//         temp.next=new LL(l);
+//     }
+
 //     public void append(T l){
 //         if(this==null){
 //             this.next=new LL(l);
