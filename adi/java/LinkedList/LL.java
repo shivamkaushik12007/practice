@@ -1,3 +1,4 @@
+//linked list using this
 public class LL<T>{
     private T val;
     private LL next;
