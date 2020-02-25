@@ -17,3 +17,4 @@ listnode* detectCycle(listnode* A) {
     }
     return NULL;
 }
+//detect cycle in linked list
