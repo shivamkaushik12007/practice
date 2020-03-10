@@ -16,27 +16,27 @@ class TestClass {
             r--;
             int res=0;
             for(int i=l;i<=r;i++){
-                // int temp=arr[i];
-                res=0;
-                int temp=(int)(Math.log(arr[i])/Math.log(2));
-                temp++;
-                System.out.println("checking"+temp);
-                if(temp%2==0){
-                }else{
+//                 int temp=arr[i];
+//                 res=0;
+//                 int temp=(int)(Math.log(arr[i])/Math.log(2));
+//                 temp++;
+//                 System.out.println("checking"+temp);
+//                 if(temp%2==0){
+//                 }else{
+//                     if(res==0){
+//                         res=1;
+//                     }else{
+//                         res=0;
+//                     }
+//                 }
+                while(temp!=0){
+                    temp/=2;
                     if(res==0){
                         res=1;
                     }else{
                         res=0;
                     }
                 }
-                // while(temp!=0){
-                //     temp/=2;
-                //     if(res==0){
-                //         res=1;
-                //     }else{
-                //         res=0;
-                //     }
-                // }
             }
             if(res==1){
                 System.out.println("Mishki");
