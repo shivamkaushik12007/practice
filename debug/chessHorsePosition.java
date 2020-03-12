@@ -69,6 +69,18 @@ class TestClass {
                 int t2=t1,v2=v1-2;
                 int t3=brr[i][0]+1,v3=brr[i][1]+2;
                 int t4=t3-2,v4=v3;
+                if(t1>=0&&t1<n&&v1>=0&&v1<m&&arr[t1][v1]==2){
+                    cnt+=1;
+                }
+                if(t2>=0&&t2<n&&v2>=0&&v2<m&&arr[t2][v2]==2){
+                    cnt+=1;
+                }
+                if(t3>=0&&t3<n&&v3>=0&&v3<m&&arr[t3][v3]==2){
+                    cnt+=1;
+                }
+                if(t4>=0&&t4<n&&v4>=0&&v4<m&&arr[t4][v4]==2){
+                    cnt+=1;
+                }
                 if(t1>=0&&t1<n&&v1>=0&&v1<m&&arr[t1][v1]==1){
                     cnt+=2;
                 }
