@@ -1,5 +1,6 @@
 import java.util.*;
 import java.lang.*;
+//to find the position of the person after getting the path direction via string
 class TestClass {
     public static void main(String args[] ) throws Exception {
         Scanner scanner =new Scanner(System.in);
