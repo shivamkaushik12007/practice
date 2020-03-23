@@ -28,7 +28,16 @@ class TestClass {
         }
         Collections.sort(result);
         String ress=result.get(0);
-        for(int i=0)
+        for(int i=0;i<ress.length();i++){
+            System.out.print(ress.charAt(i)+" ");
+        }
+        System.out.println();
+        int resNum=res.get(ress);
+        int get=p/resNum;
+        if(get>resMin){
+            get+=get/resNum;
+        }
+        System.out.println(get);
     }
     public static void dfs(int s,int d,ArrayList<Map<Integer,Integer>> arr,int[] vis,int min,String si){
         si+=Integer.toString(s);
