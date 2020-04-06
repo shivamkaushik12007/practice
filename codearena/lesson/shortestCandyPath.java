@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
-class TestClass {
-    public static void main(String args[] ) throws Exception {
+class Main{
+    public static void main(String args[] ){
         Scanner scanner=new Scanner(System.in);
         int n=scanner.nextInt();
         int m=scanner.nextInt();
@@ -32,16 +32,22 @@ class TestClass {
             }
         }
         for(int i=0;i<n;i++){
+            if(path[i]==Integer.MAX_VALUE){
+                path[i]=0;
+            }
+        }
+        for(int i=0;i<n;i++){
             int sum=0;
             for(int j=0;j<n;j++){
                 if(i!=j&&path[i]!=0&&path[j]!=0&&i!=s-1&&j!=s-1){
                     sum+=(path[i]+path[j])*a[j];
                 }else if(i!=s-1&&j==s-1){
-                    sum+=path[j]*a[j];
+                    sum+=path[i]*a[j];
                 }else if(i==s-1&&j!=s-1){
                     sum+=path[j]*a[j];
                 }
             }
+            
             System.out.print(sum+" ");
         }
     }
