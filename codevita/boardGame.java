@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 class BoardGame{
-  static int max=Integer.MIN_VALUE;
+  static int min=Integer.MAX_VALUE;
   public static void main(String args[]){
       Scanner sc=new Scanner(System.in);
       int n=sc.nextInt();
@@ -11,14 +11,16 @@ class BoardGame{
           arr[i][j]=sc.nextInt();
         }
       }
-      int[][] vis=int[n][n];
       dfs(arr,n,0,0,0);
-    System.out.println(max);
+    System.out.print(min);
+    System.out.println();
     }
-  public static void(int[][] arr,int n,int sum,int i,int j){
+  public static void dfs(int[][] arr,int n,int sum,int i,int j){
     int temp=(int)Math.floor(sum/2);
       temp+=arr[i][j];
-      if(i==n-1&&j==n-1&&temp>max)max=temp;
+      if(i==n-1&&j==n-1&&temp<min){
+          min=temp;
+      }
     if(i+1<n){
       dfs(arr,n,temp,i+1,j);
     }
@@ -26,4 +28,5 @@ class BoardGame{
       dfs(arr,n,temp,i,j+1);
     }
   }
+
 }
