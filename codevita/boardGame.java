@@ -13,6 +13,7 @@ class BoardGame{
       }
       int[][] vis=int[n][n];
       dfs(arr,n,0,0,0);
+    System.out.println(max);
     }
   public static void(int[][] arr,int n,int sum,int i,int j){
     int temp=(int)Math.floor(sum/2);
