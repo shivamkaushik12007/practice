@@ -18,6 +18,7 @@ class TestClass {
             }
         }
     }
+    
     public static boolean check(int z,int n,int[] arr){
         for(int i=0;i<n;i++){
             int k=z&arr[i];
