@@ -23,3 +23,5 @@ if __name__ == '__main__':
             break
         print(i[0]+" "+str(i[1]))
         k+=1
+# from collections import Counter
+# for each in Counter(sorted(input())).most_common(3): print(*each)
