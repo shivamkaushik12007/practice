@@ -5,5 +5,4 @@ class Solution:
         res=""
         for i in arr:
             res+=i.strip()+" " if(len(i.strip())>0) else ""
-        # print(res)
         return res.strip()
